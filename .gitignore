@@ -1,3 +1,4 @@
-TestCQRS/obj/
+TestCQRS/obj/debug
 .vs/
 TestCQRS/bin/
+*.cache

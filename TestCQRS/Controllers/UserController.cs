@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TestCQRS.Dtos;
 using TestCQRS.Features.Users;
@@ -36,16 +38,17 @@ namespace TestCQRS.Controllers
         {
             try
             {
+                var hasher = new PasswordHasher();
                 var user = await _mediator.Send(new CreateUserCommand
                 {
                     UserName = request.UserName,
-                    Password = request.Password,
+                    Password = hasher.HashPassword(request.Password)
                 });
                 return Ok(user);
             }
-            catch (Exception e)
+            catch (BadHttpRequestException bE)
             {
-                return BadRequest(e.Message);
+                return BadRequest(bE.Message);
             }
 
         }

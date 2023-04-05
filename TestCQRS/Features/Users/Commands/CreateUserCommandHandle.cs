@@ -16,7 +16,7 @@ namespace TestCQRS.Features.Users.Commands
             var userExist = _dbContext.Users.FirstOrDefault(t=>t.UserName== request.UserName);
             if (userExist != null)
             {
-                throw new Exception("UserName exist");
+                throw new BadHttpRequestException("UserName exist");
             }
             var user = new User
             {
