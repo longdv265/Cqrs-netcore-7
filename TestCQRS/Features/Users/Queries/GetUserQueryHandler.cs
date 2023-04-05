@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using TestCQRS.Models;
 using TestCQRS.NewFolder;
 
-namespace TestCQRS.Features.Users
+namespace TestCQRS.Features.Users.Queries
 {
     public class GetUserQueryHandler : IRequestHandler<GetUserQuery, GetUserByIdDto>
     {

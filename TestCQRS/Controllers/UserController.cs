@@ -1,7 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TestCQRS.Dtos;
 using TestCQRS.Features.Users;
+using TestCQRS.Features.Users.Commands;
+using TestCQRS.Features.Users.Queries;
 using TestCQRS.Models;
 using TestCQRS.NewFolder;
 
@@ -26,6 +29,25 @@ namespace TestCQRS.Controllers
                 return NotFound("User does not exist");
             }
             return Ok(data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand request)
+        {
+            try
+            {
+                var user = await _mediator.Send(new CreateUserCommand
+                {
+                    UserName = request.UserName,
+                    Password = request.Password,
+                });
+                return Ok(user);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
     }
 }
