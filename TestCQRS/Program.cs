@@ -4,6 +4,7 @@ using MediatR;
 using MediatR.Pipeline;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using TestCQRS.HostedServices;
 using TestCQRS.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,8 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPrePro
 builder.Services.AddMediatR(typeof(Program));
 //Config validation
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+builder.Services.AddSingleton<EmailHostedService>();
+builder.Services.AddHostedService(provider => provider.GetService<EmailHostedService>());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

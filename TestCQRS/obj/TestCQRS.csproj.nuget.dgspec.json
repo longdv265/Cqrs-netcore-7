@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[11.3.0, )"
             },
+            "Mailjet.Api": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[11.1.0, )"

@@ -81,3 +81,5 @@ D:\cqrs net core\TestCQRS\TestCQRS\bin\Debug\net7.0\Microsoft.Extensions.Depende
 D:\cqrs net core\TestCQRS\TestCQRS\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\cqrs net core\TestCQRS\TestCQRS\bin\Debug\net7.0\System.CodeDom.dll
 D:\cqrs net core\TestCQRS\TestCQRS\bin\Debug\net7.0\Microsoft.AspNet.Identity.Core.dll
+D:\cqrs net core\TestCQRS\TestCQRS\bin\Debug\net7.0\Mailjet.Client.dll
+D:\cqrs net core\TestCQRS\TestCQRS\bin\Debug\net7.0\Newtonsoft.Json.dll

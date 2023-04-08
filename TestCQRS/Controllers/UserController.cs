@@ -3,10 +3,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using TestCQRS.Common.Email.EmailProvider;
 using TestCQRS.Dtos;
 using TestCQRS.Features.Users;
 using TestCQRS.Features.Users.Commands;
 using TestCQRS.Features.Users.Queries;
+using TestCQRS.HostedServices;
 using TestCQRS.Models;
 using TestCQRS.NewFolder;
 
@@ -17,9 +19,11 @@ namespace TestCQRS.Controllers
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public UserController(IMediator mediator)
+        private EmailHostedService _emailHostedService;
+        public UserController(IMediator mediator, EmailHostedService emailHostedService)
         {
             _mediator = mediator;
+            _emailHostedService = emailHostedService;
         }
 
         [HttpGet("{id}")]
@@ -43,6 +47,12 @@ namespace TestCQRS.Controllers
                 {
                     UserName = request.UserName,
                     Password = hasher.HashPassword(request.Password)
+                });
+                _ = _emailHostedService.SendEmailAsync(new Common.Email.EmailModel
+                {
+                    EmailAddress = "longdoviet@tcom.vn",
+                    Subject = "1st Email",
+                    Body = "Hello"
                 });
                 return Ok(user);
             }
